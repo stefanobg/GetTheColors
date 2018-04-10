@@ -7,7 +7,7 @@ Installation:
 Based on: https://github.com/abenassi/Google-Search-API and https://market.mashape.com/apicloud/colortag#
 
 
-First install Unirest package from pip:
+First install this packages to run the script:
 ```
 $ pip install unirest
 $ pip install selenium==2.43.0
