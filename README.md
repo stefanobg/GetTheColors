@@ -27,3 +27,11 @@ To upgrade the package if you have already installed it:
 ```
 $ pip install Google-Search-API --upgrade
 ```
+
+Run:
+------------
+
+To run the script use this code below on your terminal
+```
+$ python -W ignore listTheColors.py
+```

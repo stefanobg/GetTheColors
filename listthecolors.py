@@ -69,13 +69,12 @@ for i in range(0, precision):
   if colors:
     for z in range(0, len(colors['tags'])):
       if (colors['tags'][z]['label'] not in ['Beige', 'White', 'Black', 'WhiteSmoke', 'gainsboro']):
-        # print "-> " + colors['tags'][z]['label'] + " - " + colors['tags'][z]['color']
+        print "-> " + colors['tags'][z]['label'] + " - " + colors['tags'][z]['color']
         colorHexa.append(colors['tags'][z]['color'])
         colorLabel.append(colors['tags'][z]['label'])
         break
+  print ""
 
-print ""
 obj = Counter(colorLabel)
 c = Color(getRelevant(obj))
 print "Color is: %s - %s" % (c, c.hex)
-# print "To use on Equals: %s" % (Color(c, luminance=0.2).hex) 
