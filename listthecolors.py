@@ -10,7 +10,6 @@ import csv
 
 colorsToSave = []
 
-
 def getColors(url, sort='weight', pallete='w3c') :
   return unirest.get("https://apicloud-colortag.p.mashape.com/tag-url.json?palette="+pallete+"&sort="+sort+"&url="+url,
     headers={
@@ -19,13 +18,12 @@ def getColors(url, sort='weight', pallete='w3c') :
     }
   ).body
 
-
-def getRelevantColor(colorJson):
+def getRelevant(listValue):
   aux = [0, 0]
-  for i in colorJson:
-    if (colorJson[i] > aux[1]):
+  for i in listValue:
+    if (listValue[i] > aux[1]):
       aux[0] = i
-      aux[1] = colorJson[i]
+      aux[1] = listValue[i]
   return aux[0]
 
 
@@ -47,7 +45,7 @@ def findTheColor(strToFind, precision = 10):
           break
 
   obj = Counter(colorLabel)
-  c = Color(getRelevantColor(obj))
+  c = Color(getRelevant(obj))
   colorsToSave.append(c.hex)
   print "Color is: %s - %s" % (c, c.hex)
 
@@ -66,8 +64,8 @@ colorHexa = []
 colorLabel = []
 
 for i in range(0, precision):
+  print "(%s/%s) %s" % (i+1, precision, results[i].link)
   colors = getColors(results[i].link)
-  print "(%s / %s) %s" % (i+1, precision, results[i].link)
   if colors:
     for z in range(0, len(colors['tags'])):
       if (colors['tags'][z]['label'] not in ['Beige', 'White', 'Black', 'WhiteSmoke', 'gainsboro']):
@@ -78,6 +76,6 @@ for i in range(0, precision):
 
 print ""
 obj = Counter(colorLabel)
-c = Color(getRelevantColor(obj))
+c = Color(getRelevant(obj))
 print "Color is: %s - %s" % (c, c.hex)
 # print "To use on Equals: %s" % (Color(c, luminance=0.2).hex) 
