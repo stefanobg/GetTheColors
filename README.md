@@ -35,3 +35,8 @@ To run the script use this code below on your terminal
 ```
 $ python -W ignore listTheColors.py
 ```
+
+If you get problems with timeout, please install django and change pip timeout
+```
+pip --default-timeout=100 install django
+```

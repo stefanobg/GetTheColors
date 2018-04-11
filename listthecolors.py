@@ -1,22 +1,28 @@
 # -*- coding: utf-8 -*-
 from google import google, images
-from bs4 import BeautifulSoup
-from pprint import pprint
 from collections import Counter
 from colour import Color
 import unirest
 import json
 import csv
+import httplib
 
 colorsToSave = []
 
-def getColors(url, sort='weight', pallete='w3c') :
-  return unirest.get("https://apicloud-colortag.p.mashape.com/tag-url.json?palette="+pallete+"&sort="+sort+"&url="+url,
-    headers={
-      "X-Mashape-Key": "zkf3ElhK0imshKx1IrjCpiIgjBhGp1GM8rGjsnYbqUem7tO460",
-      "Accept": "application/json"
-    }
-  ).body
+def getColorsFromURL(url, sort='weight', pallete='w3c') :
+  urlResponse = httplib.HTTPConnection(url)
+  urlResponse.request("HEAD", '')
+  if c.getresponse().status == 200:
+    if url.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):  
+      return unirest.get("https://apicloud-colortag.p.mashape.com/tag-url.json?palette="+pallete+"&sort="+sort+"&url="+url,
+        headers={
+          "X-Mashape-Key": "zkf3ElhK0imshKx1IrjCpiIgjBhGp1GM8rGjsnYbqUem7tO460",
+          "Accept": "application/json"
+        }
+      ).body
+    else:
+      return ''
+  return ''
 
 def getRelevant(listValue):
   aux = [0, 0]
@@ -25,7 +31,6 @@ def getRelevant(listValue):
       aux[0] = i
       aux[1] = listValue[i]
   return aux[0]
-
 
 def findTheColor(strToFind, precision = 10):
   print "\nLooking for %s" % (strToFind)
@@ -36,7 +41,7 @@ def findTheColor(strToFind, precision = 10):
   colorLabel = []
 
   for i in range(0, precision):
-    colors = getColors(results[i].link)
+    colors = getColorsFromURL(results[i].link)
     if colors:
       for z in range(0, len(colors['tags'])):
         if (colors['tags'][z]['label'] not in ['Beige', 'White', 'Black']):
@@ -65,7 +70,7 @@ colorLabel = []
 
 for i in range(0, precision):
   print "(%s/%s) %s" % (i+1, precision, results[i].link)
-  colors = getColors(results[i].link)
+  colors = getColorsFromURL(results[i].link)
   if colors:
     for z in range(0, len(colors['tags'])):
       if (colors['tags'][z]['label'] not in ['Beige', 'White', 'Black', 'WhiteSmoke', 'gainsboro']):
