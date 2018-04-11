@@ -1,11 +1,16 @@
 # GetTheColors
-Get all of the colors of your JSON list based on a google image search and their most relevant colors.
+Get all the colors of your google image search and find their most relevant colors.
+
+References:
+------------
+
+Based on: 
+https://github.com/abenassi/Google-Search-API
+https://market.mashape.com/apicloud/colortag#
+http://www.thecolorapi.com/
 
 Installation:
 ------------
-
-Based on: https://github.com/abenassi/Google-Search-API and https://market.mashape.com/apicloud/colortag#
-
 
 First install this packages to run the script:
 ```
@@ -33,7 +38,7 @@ Run:
 
 To run the script use this code below on your terminal
 ```
-$ python -W ignore listTheColors.py
+$ python -W ignore getTheColors.py
 ```
 
 If you get problems with timeout, please install django and change pip timeout
