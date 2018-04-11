@@ -1,4 +1,4 @@
-# ListTheColors
+# GetTheColors
 Get all of the colors of your JSON list based on a google image search and their most relevant colors.
 
 Installation:
