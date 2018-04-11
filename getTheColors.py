@@ -9,9 +9,13 @@ import csv
 import urllib
 import urllib2
 import os
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 colorsToSave = []
-colorsBlackList = ['beige', 'white', 'black', 'gainsboro']
+colorsBlackList = ['beige', 'white', 'black', 'gainsboro', 'Alabaster', 'smoke', 'gray']
 
 def getColorsFromURL(url, sort='weight', pallete='w3c'):
   try:
@@ -55,24 +59,24 @@ def showColorInfo(colorHex, mode='json'):
 #     sleep(30)
 
 def getColor(stringToSearch, precision = 20):
-  print "\n=======================\n"
+  print "\n\n==========================================================\n\n"
   print "Looking for "+stringToSearch+" images"
   
   searchString = stringToSearch
   directory = "download/"+searchString
 
   options = images.ImageOptions()
-  results = google.search_images(searchString + " Logo", options, precision)
+  results = google.search_images(searchString + " Banco Logo", options, precision)
 
   if not os.path.exists(directory):
-    print "Downloading images to "+directory
+    print "\nDownloading images to "+directory
     os.makedirs(directory)
     images.fast_download(results, path=directory, threads=precision)
 
   listColorHex  = []
   listColorName = []
 
-  print "Checking URL and getting colors from:"
+  print "\nChecking URL and getting colors from:"
   for i in range(0, precision):
     print "(%s/%s) %s" % (i+1, precision, results[i].link)
     colors = getColorsFromURL(results[i].link)

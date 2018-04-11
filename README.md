@@ -43,5 +43,5 @@ $ python -W ignore getTheColors.py
 
 If you get problems with timeout, please install django and change pip timeout
 ```
-pip --default-timeout=100 install django
+$ pip --default-timeout=100 install django
 ```
