@@ -3,4 +3,7 @@
 *.log
 *.pyc
 download
-readCSV.py  
+readCSV.py
+generateScript.py
+sql
+output

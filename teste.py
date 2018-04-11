@@ -1,3 +1,3 @@
 import getTheColors
 
-print getTheColors.getColor('Barack Obama face', 10)
+# getTheColors.showColorInfo(getTheColors.getColor('Banrisul Banco', 15), 'html')
