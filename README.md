@@ -15,7 +15,7 @@ $ pip install colour
 ```
 
 Install Firefox 32.0.3 to work with Selenium 2.43.0:
-https://ftp.mozilla.org/pub/firefox/releases/32.0.3
+https://ftp.mozilla.org/pub/firefox/releases/32.0.3/
 
 
 Then install Google Search API:
