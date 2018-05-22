@@ -26,11 +26,20 @@ https://ftp.mozilla.org/pub/firefox/releases/32.0.3/
 Then install Google Search API:
 ```
 $ pip install Google-Search-API
+$ pip install google
 ```
 
 To upgrade the package if you have already installed it:
 ```
 $ pip install Google-Search-API --upgrade
+```
+
+PIP install problem:
+------------
+
+If you have problems with pip install try add "--user" like this:
+```
+$ pip install package-name --user
 ```
 
 Run:

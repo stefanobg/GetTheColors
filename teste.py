@@ -1,6 +1,6 @@
 import getTheColors
 
-newColor = getTheColors.getColor('Banco Itau', 10, 'Logo', True)
+newColor = getTheColors.getColor('Santander', 10)
 getTheColors.showColorInfo(newColor[0], 'html')
 getTheColors.showColorInfo(newColor[1], 'html')
 

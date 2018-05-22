@@ -2,6 +2,7 @@
 from google import google, images
 from collections import Counter
 from colour import Color
+from colorthief import ColorThief
 import webbrowser
 import unirest
 import json
@@ -17,7 +18,18 @@ sys.setdefaultencoding('utf-8')
 colorsToSave = []
 colorsBlackList = ['beige', 'white', 'black', 'gainsboro', 'Alabaster', 'smoke', 'gray', 'lavender', 'silver', 'ghost', 'snow']
 
+def getColorsFromFile(filePath):
+  fileInfo = ColorThief(filePath)
+  dominantColor = fileInfo.get_color(quality=1)
+  palette = fileInfo.get_palette(color_count=6)
+  colorsFromFile = []
+  colorsFromFile.append('#%02x%02x%02x' % dominantColor)
+  for i in palette:
+    colorsFromFile.append('#%02x%02x%02x' % i)
+  return colorsFromFile
+
 def getColorsFromURL(url, sort='weight', pallete='w3c'):
+# Not using this anymore, cause it's a paid API
   try:
     hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
           'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -66,9 +78,16 @@ def getColor(stringToSearch, precision = 20, keyWords = 'Logo', secondaryColor =
   
   directory = "download/"+stringToSearch
 
-  options = images.ImageOptions()
+  # options = images.ImageOptions()
 
-  results = google.search_images(stringToSearch + " " + keyWords, options, precision)
+  options = images.ImageOptions()
+  options.image_type = images.ImageType.CLIPART
+  options.larger_than = images.LargerThan.MP_4
+  options.color = "green"
+  results = google.search_images("banana", options)
+  print results
+
+  # results = google.search_images(stringToSearch + " " + keyWords, options, precision)
 
   if not os.path.exists(directory):
     print "\nDownloading images to "+directory
