@@ -12,7 +12,7 @@ http://www.thecolorapi.com/
 Installation:
 ------------
 
-First install this packages to run the script:
+First install this packages to run the script, if you haven't:
 ```
 $ pip install unirest
 $ pip install selenium==2.43.0
